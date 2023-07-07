@@ -4,8 +4,14 @@ const validateBody = require("../../middlewares/validateBody");
 const { schemas } = require("../../models/user");
 const authenticate = require("../../middlewares/authenticate");
 const ctrl = require("../../controllers/auth");
+const upload = require("../../middlewares/upload");
 
-router.post("/register", validateBody(schemas.registerSchema), ctrl.register);
+router.post(
+  "/register",
+  validateBody(schemas.registerSchema),
+  upload.single("avatar"),
+  ctrl.register
+);
 
 router.post("/login", validateBody(schemas.loginSchema), ctrl.login);
 
@@ -18,6 +24,13 @@ router.patch(
   authenticate,
   validateBody(schemas.updateSubscriptionSchema),
   ctrl.updateSubscription
+);
+
+router.patch(
+  "/avatars",
+  authenticate,
+  upload.single("avatar"),
+  ctrl.updateAvatar
 );
 
 module.exports = router;
