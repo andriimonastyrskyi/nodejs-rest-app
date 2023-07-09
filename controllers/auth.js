@@ -3,7 +3,9 @@ const jwt = require("jsonwebtoken");
 const { User } = require("../models/user");
 const { ctrlWrapper, HttpError } = require("../helpers");
 const { SECRET_KEY } = process.env;
+const sendEmail = require("../helpers/sendEmail");
 
+const { nanoid } = require("nanoid");
 const fs = require("fs/promises");
 const gravatar = require("gravatar");
 const Jimp = require("jimp");
