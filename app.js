@@ -6,6 +6,8 @@ const contactsRouter = require("./routes/api/contacts");
 const authRouter = require("./routes/api/auth");
 // const { HttpError } = require("./helpers");
 
+// const nodemailer = require("nodemailer");
+
 const app = express();
 
 const formatsLogger = app.get("env") === "development" ? "dev" : "short";
